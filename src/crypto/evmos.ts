@@ -1,7 +1,11 @@
+import Koa from "koa";
+
 const proto = require('@tharsis/proto')
 import {Cosmos} from "../common/cosmos";
 import { Keccak } from 'sha3'
 import {createSignerInfo, createMsgSend, createBody, createFee, createAuthInfo, createSigDoc} from "@tharsis/proto";
+
+let body:{from: string, to: string, amount: string, unit: string, memo: string, fee: string, gas: number,priv: string, sequence: number, accountNumber: number, chainId: string};
 
 export class Evmos {
 
@@ -17,7 +21,16 @@ export class Evmos {
     //     return s;
     // }
 
-    public static signTransaction(_fromAddress: string, _toAddress: string, _amount: string, _denom: string, _memo: string, _fee: string, _gasLimit: number, _algo: string, _priv: string, _sequence: number, _accountNumber: number, _chainId: string): string {
+    public static request(ctx:Koa.Context) {
+        body = ctx.request.body;
+        let res = Evmos.signSchnorr(body.from,body.to,body.amount,body.unit,body.memo,body.fee,body.gas,"ethsecp256",body.priv,body.sequence,body.accountNumber,body.chainId);
+        return {
+            code: 100000,
+            data: res
+        }
+    }
+
+    public static signSchnorr(_fromAddress: string, _toAddress: string, _amount: string, _denom: string, _memo: string, _fee: string, _gasLimit: number, _algo: string, _priv: string, _sequence: number, _accountNumber: number, _chainId: string): string {
         // let pubKeyByte = Cosmos.getPubKeyAny(_priv);
         let pubKeyByte = Cosmos.getPubKey(_priv);
         const pubKey = Buffer.from(pubKeyByte).toString("base64");
