@@ -2,7 +2,9 @@ const proto = require('@tharsis/proto')
 import {Cosmos} from "../common/cosmos";
 import { Keccak } from 'sha3'
 import {createSignerInfo, createMsgSend, createBody, createFee, createAuthInfo, createSigDoc} from "@tharsis/proto";
+
 export class Evmos {
+
     // public static signTransaction(_fromAddress: string, _toAddress: string, _amount: string, _denom: string, _memo: string, _fee: string, _gasLimit: number, _algo: string, _priv: string, _sequence: number, _accountNumber: number, _chainId: string): string {
     //     let pubKeyByte = Cosmos.getPubKey(_priv);//ethsecp256k1
     //     const pubKey = Buffer.from(pubKeyByte).toString("base64");
@@ -14,6 +16,7 @@ export class Evmos {
     //     console.log(s);
     //     return s;
     // }
+
     public static signTransaction(_fromAddress: string, _toAddress: string, _amount: string, _denom: string, _memo: string, _fee: string, _gasLimit: number, _algo: string, _priv: string, _sequence: number, _accountNumber: number, _chainId: string): string {
         // let pubKeyByte = Cosmos.getPubKeyAny(_priv);
         let pubKeyByte = Cosmos.getPubKey(_priv);
@@ -33,5 +36,6 @@ export class Evmos {
         console.log(s);
         return s;
     }
+
 }
 
