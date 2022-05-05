@@ -9,7 +9,6 @@ const app: Koa = new Koa()
 app.use(koaBody({json:true}))
 app.use(route.routes())
 
-
 app.use(async (ctx: Koa.Context,next:Koa.Next) => {
     await next();
     const rt = ctx.response.get("X-Response-Time");

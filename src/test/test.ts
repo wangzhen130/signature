@@ -3,13 +3,14 @@ import { Evmos } from "../crypto/evmos"
 
 
 test("createSign", () => {
-    // const key = Buffer.from("57c3bd053996699a543254cbcfaff98d8a6986ab6e4184c210c4103ebda0375c", "hex");
+    const key = "57c3bd053996699a543254cbcfaff98d8a6986ab6e4184c210c4103ebda0375c";
     const pubkey = Buffer.from("037d1a42e90f42b0d8df3d9ef01a405f336d96af4678a17d5f1cbb79d30713ff9c", "hex");
-    const hash = Buffer.from("6481838ac998383599ece5ba0e9ca46992f3f75f30a9ad1d328e4fc693af2108", "hex");
-    const sign = Sxp.signSchnorr(Buffer.from("6481838ac998383599ece5ba0e9ca46992f3f75f30a9ad1d328e4fc693af2108"),"57c3bd053996699a543254cbcfaff98d8a6986ab6e4184c210c4103ebda0375c");
+    const hash = Buffer.from("4f9f7741f163b4d80a5d1cd735a9ebefd12adb83d8d26a70eb7bdd3161329e18", "hex");
+    const sign = Sxp.signSchnorr(Buffer.from("4f9f7741f163b4d80a5d1cd735a9ebefd12adb83d8d26a70eb7bdd3161329e18",'hex'),key);
     let b = Sxp.verifySchnorr(hash,sign,pubkey);
     console.log(b);
-    console.log("ec4670f05feb43b060e025321f3c08ce2bcec131eae656558afa0c71e97b9c757d53288538185de87cd4d626a55bbdb9311d83ef492078c7c63d4fdb72ea2b53")
+    console.log("test-sign:",sign)
+    console.log("c83e9856d93eb1e0065a5d5bd0d3eaac4fd5c3772763e40e53f6395f4d98ab1cc6e55a382499459ba8b83a002abccdd2779bc15774b28dac43f54219180072ae")
 });
 
 test("createEvmosSign", () => {
