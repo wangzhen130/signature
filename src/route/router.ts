@@ -7,8 +7,8 @@ import { Evmos } from "../crypto/evmos"
 const route: Router = new Router()
 let evmosBody:{from: string, to: string, amount: string, unit: string, memo: string, fee: string, gas: number,priv: string, sequence: number, accountNumber: number, chainId: string}
 route.post("/api/sign",async (ctx:Koa.Context,next:Koa.Next) =>{
-    const body:{key:String,hash:String} = ctx.request.body;
-    ctx.response.body = Sxp.signSchnorr(Buffer.from(body.key,"hex"),Buffer.from(body.hash,"hex"));
+    const body:{key:string,hash:string} = ctx.request.body;
+    ctx.response.body = Sxp.signSchnorr(Buffer.from(body.hash,"hex"),body.key);
 })
 
 route.post("/api/evmos",async (ctx:Koa.Context,next:Koa.Next) =>{
