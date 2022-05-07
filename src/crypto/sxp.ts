@@ -1,6 +1,4 @@
 import Koa from "koa";
-import * as buffer from "buffer";
-
 const bcrypto = require('bcrypto')
 const secp256k1 = bcrypto.secp256k1;
 
