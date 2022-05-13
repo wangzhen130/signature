@@ -1,7 +1,7 @@
 # signature
 ## environment dependent
-node:v17.8.0
-npm 8.6.0
+    yum install node
+    yun install npm
 
 ## 0.enter the working directory
     cd typescript-sdk
