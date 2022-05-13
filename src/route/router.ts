@@ -4,6 +4,7 @@ import { ROUTER_MAP } from '../common/constant'
 import { RouteMeta } from '../common/type'
 import Router from 'koa-router'
 import "reflect-metadata";
+import log from '../common/logger'
 
 const addRouter = (router: Router) => {
     const ctrPath = path.join(__dirname, '../controller');
@@ -17,7 +18,7 @@ const addRouter = (router: Router) => {
     // 结合meta数据添加路由
     modules.forEach(m => {
         const routerMap: RouteMeta[] = Reflect.getMetadata(ROUTER_MAP, m, 'method') || [];
-        console.log(routerMap);
+        log.info("app request info:",routerMap)
         if (routerMap.length) {
             const ctr = new m();
             routerMap.forEach(route => {

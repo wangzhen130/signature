@@ -4,6 +4,7 @@ import koaBody from 'koa-body'
 import koaRouter from 'koa-router'
 import addRouter from './route/router'
 import errorHandler from './middleware/error'
+import log from './common/logger'
 
 const app = new koa()
 const router = new koaRouter();
@@ -29,12 +30,14 @@ app.use(router.routes()).use(router.allowedMethods());
 
 // deal 404
 app.use(async (ctx: Context) => {
+    log.error(`404 ${ctx.message} : ${ctx.href}`);
     ctx.status = 404;
     ctx.body = '404! content not found !';
 });
 
 // koa already had middleware to deal with the error, just register the error event
 app.on('error', (err, ctx: Context) => {
+    log.error(err);//log all errors
     ctx.status = 500;
     if (ctx.app.env !== 'development') { //throw the error to frontEnd when in the develop mode
         ctx.res.end(err.stack); //finish the response
@@ -44,5 +47,5 @@ app.on('error', (err, ctx: Context) => {
 if (!module.parent) {
     const port = process.env.PORT || 3000;
     app.listen(port);
-    console.log('app server running at: http://localhost:%d', port);
+    log.info(`=== app server running on port ${port}===`);
 }
