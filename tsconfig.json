@@ -16,7 +16,7 @@
     "checkJs": true, // 验证js文件语法
     "removeComments": false, // 编译后的js文件删除注释信息
     "noEmitOnError": true, // 如果编译时出现错误，编译将终止
-    "strict": true, // 启用TypeScript的严格模式
+    "strict": false, // 启用TypeScript的严格模式
     "sourceMap": true,
     "alwaysStrict": true, // 启用JavaScript的严格模式
     "esModuleInterop": true,
@@ -25,6 +25,6 @@
     "noUnusedLocals": false, // 检测是否具有未使用的局部变量
     "noUnusedParameters": false, // 检测是否具有未使用的函数参数
     "allowUnreachableCode": true, // 检测是否具有永远不会运行的代码
-
+    "experimentalDecorators": true, // 开启装饰器的使用
   }
 }

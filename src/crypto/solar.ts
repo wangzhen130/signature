@@ -4,11 +4,11 @@ const secp256k1 = bcrypto.secp256k1;
 
 let body:{key:string,hash:string};
 
-export class Sxp {
+export class Signature {
 
-    public static request(ctx:Koa.Context): string {
+    public static requestSign(ctx:Koa.Context): string {
         body = ctx.request.body;
-        return Sxp.signSchnorr(body.hash,body.key);
+        return Signature.signSchnorr(body.hash,body.key);
     }
 
     public static signSchnorr(hash:string,key:string){

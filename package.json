@@ -29,6 +29,8 @@
   "devDependencies": {
     "@types/jest": "^27.5.0",
     "jest": "^27.5.1",
+    "koa-static": "^5.0.0",
+    "reflect-metadata": "^0.1.13",
     "sha3": "^2.1.4",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
